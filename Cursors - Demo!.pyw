@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 
 # Задаем цвета
 black = (0, 0, 0)
@@ -16,32 +16,32 @@ grey = (140, 140, 140)
 #  Частота обновления экрана - кадры в секунду
 fps = 60
 
-pygame.init()
+pg.init()
 
-fnt = pygame.font.SysFont('Special Elite', 42, bold=True)
+fnt = pg.font.SysFont('Special Elite', 42, bold=True)
 
 # Берем разрешение экрана
-info = pygame.display.Info()
+info = pg.display.Info()
 
 # Выставляем размер окна = разрешению экрана
 width, height = info.current_w, info.current_h
 
 txt = fnt.render(f'Здесь вы видите Полный Экран с разрешением {width}x{height}', True, white, grey)
-screen0 = pygame.display.set_mode((width, height), pygame.FULLSCREEN)
+screen0 = pg.display.set_mode((width, height))
 
 txt_r = txt.get_rect()
 txt_r.centerx = screen0.get_rect().centerx
 txt_r.centery = screen0.get_rect().centery
 
-pygame.display.set_caption("Меняем вид курсора по клику мыши")
-pygame.mouse.set_visible(False)
+pg.display.set_caption("Меняем вид курсора по клику мыши")
+pg.mouse.set_visible(False)
 
 done = False
 mouse_down = False
-clock = pygame.time.Clock()
+clock = pg.time.Clock()
 
-Cursor = pygame.image.load('./res/Cursor_normal_.png')
-Cursor_Clicked = pygame.image.load('./res/Cursor_clicked_.png')
+Cursor = pg.image.load('./res/Cursor_normal_.png')
+Cursor_Clicked = pg.image.load('./res/Cursor_clicked_.png')
 screen0.fill(grey)
 screen0.blit(txt, txt_r)
 
@@ -54,18 +54,18 @@ def draw_cursor(screen, x, y):
 
 
 while not done:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT or event.type == pygame.KEYDOWN:
+    for event in pg.event.get():
+        if event.type == pg.QUIT or event.type == pg.KEYDOWN:
             done = True
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pg.MOUSEBUTTONDOWN:
             mouse_down = True
-        elif event.type == pygame.MOUSEBUTTONUP:
+        elif event.type == pg.MOUSEBUTTONUP:
             mouse_down = False
 
-    pos = pygame.mouse.get_pos()
+    pos = pg.mouse.get_pos()
     x0, y0 = pos[0], pos[1]
     draw_cursor(screen0, x0, y0)
-    pygame.display.flip()
+    pg.display.flip()
     clock.tick(fps)
 
-pygame.quit()
+pg.quit()
