@@ -2,7 +2,7 @@ import pygame as pg
 import sys
 import os
 
-fontname = 'Special Elite'
+fontname = 'Special Elite.ttf'
 pg.init()
 pg.mouse.set_visible(False)
 
@@ -53,15 +53,22 @@ def draw_frm(k_w=1, k_h=1):
     pg.draw.circle(window, red, (k_w * width // 16, k_h * height // 8), height // 50)
 
 
+def draw_add_frm(k_d=10):
+    for _ in range(k_d):
+        pg.draw.circle(window, grind, (0, 0), _ * 10, 1)
+        pg.draw.circle(window, grey, (0, height // 2), _ * 10, 1)
+        pg.draw.circle(window, grind, (width, 0), _ * 10, 1)
+        pg.draw.circle(window, grey, (width // 2, 0), _ * 10, 1)
+        pg.draw.circle(window, grind, (width, height), _ * 10, 1)
+        pg.draw.circle(window, grey, (width // 2, height), _ * 10, 1)
+        pg.draw.circle(window, grind, (0, height), _ * 10, 1)
+        pg.draw.circle(window, grey, (width, height // 2), _ * 10, 1)
+
+
 window.fill(gray)
 
 pg.draw.ellipse(window, red, (0, 0, width, height), 20)
 pg.draw.ellipse(window, orange, (20, 20, width - 40, height - 40), 10)
-
-draw_frm()
-draw_frm(15, 1)
-draw_frm(1, 7)
-draw_frm(15, 7)
 
 list_txt = []
 
@@ -89,9 +96,16 @@ start = 0
 running = True
 size_font = 68
 
-font0 = pg.font.SysFont(fontname, size_font, bold=True)
+font0 = pg.font.Font(fontname, size_font)
 txt0, txt0_r = txt_rndr(poem[start], font0)
 window.blit(txt0, txt0_r)
+
+draw_frm()
+draw_frm(15, 1)
+draw_frm(1, 7)
+draw_frm(15, 7)
+draw_add_frm(42)
+
 pg.display.update()
 
 while running:
@@ -107,13 +121,13 @@ while running:
             start %= len(poem) - 1
             start += 1
 
-            size_font = int(48 + 10 * start % 30)
-            font0 = pg.font.SysFont(fontname, size_font, bold=True)
+            size_font = int(56 + 10 * start % 30)
+            font0 = pg.font.Font(fontname, size_font)
             txt0, txt0_r = txt_rndr(poem[start], font0)
 
             if txt0_r.width > width - 40:
-                size_font = 48
-                font0 = pg.font.SysFont(fontname, size_font, bold=True)
+                size_font = 56
+                font0 = pg.font.Font(fontname, size_font)
                 txt0, txt0_r = txt_rndr(poem[start], font0)
 
             window.blit(txt0, txt0_r)
