@@ -2,12 +2,18 @@ import math
 
 import pygame as pg
 
-res = width, height = 1920, 1080
+pg.init()
+# Берем разрешение экрана
+info = pg.display.Info()
+
+# Выставляем размер окна = разрешению экрана
+res = width, height = info.current_w, info.current_h
+pg.mouse.set_visible(False)
 
 
 class Cardioid:
-    def __init__(self, app_):
-        self.app = app_
+    def __init__(self, app):
+        self.app = app
         self.radius = 400
         self.num_lines = 200
         self.translate = self.app.screen.get_width() // 2, self.app.screen.get_height() // 2
@@ -54,5 +60,5 @@ class App:
 
 
 if __name__ == '__main__':
-    app = App()
-    app.run()
+    app0 = App()
+    app0.run()
