@@ -2,7 +2,7 @@ import pygame as pg
 import sys
 import os
 
-fontname = 'Schist Regular.ttf'
+fontname = 'Special Elite.ttf'
 pg.init()
 pg.mouse.set_visible(False)
 
