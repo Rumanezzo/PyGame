@@ -45,24 +45,19 @@ def txt_rndr(txt_str, font, flag=True, x=None, y=None):
     return txt, txt_r
 
 
+def greed():
+    for i in range(1, height, 10):
+        pg.draw.line(window, grey, (1, i), (width, i), 1)
+    for i in range(1, width, 10):
+        pg.draw.line(window, grey, (i, 1), (i, height), 1)
+
+
 def draw_frm(k_w=1, k_h=1):
     pg.draw.circle(window, green, (k_w * width // 16, k_h * height // 8), height // 11, 10)
     pg.draw.circle(window, grind, (k_w * width // 16, k_h * height // 8), height // 12, 10)
     pg.draw.circle(window, magenta, (k_w * width // 16, k_h * height // 8), height // 40, 2)
     pg.draw.circle(window, cyan, (k_w * width // 16, k_h * height // 8), height // 25, 4)
     pg.draw.circle(window, red, (k_w * width // 16, k_h * height // 8), height // 50)
-
-
-def draw_add_frm(k_d=10):
-    for _ in range(k_d):
-        pg.draw.circle(window, grind, (0, 0), _ * 10, 1)
-        pg.draw.circle(window, grey, (0, height // 2), _ * 10, 1)
-        pg.draw.circle(window, grind, (width, 0), _ * 10, 1)
-        pg.draw.circle(window, grey, (width // 2, 0), _ * 10, 1)
-        pg.draw.circle(window, grind, (width, height), _ * 10, 1)
-        pg.draw.circle(window, grey, (width // 2, height), _ * 10, 1)
-        pg.draw.circle(window, grind, (0, height), _ * 10, 1)
-        pg.draw.circle(window, grey, (width, height // 2), _ * 10, 1)
 
 
 window.fill(gray)
@@ -104,7 +99,7 @@ draw_frm()
 draw_frm(15, 1)
 draw_frm(1, 7)
 draw_frm(15, 7)
-draw_add_frm(42)
+greed()
 
 pg.display.update()
 
@@ -114,6 +109,7 @@ while running:
         if event.type == pg.QUIT or keys[pg.K_ESCAPE]:
             running = False
         if event.type == pg.MOUSEBUTTONDOWN or keys[pg.K_RETURN]:
+
             txt0, txt0_r = txt_rndr(poem[start], font0, False)
 
             window.blit(txt0, txt0_r)
@@ -132,10 +128,7 @@ while running:
 
             window.blit(txt0, txt0_r)
 
-            for i in range(1, height, 10):
-                pg.draw.line(window, grey, (1, i), (width, i), 1)
-            for i in range(1, width, 10):
-                pg.draw.line(window, grey, (i, 1), (i, height), 1)
+            greed()
 
             pg.display.update()
 
