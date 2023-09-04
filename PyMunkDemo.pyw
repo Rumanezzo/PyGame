@@ -41,7 +41,7 @@ for x in range(120, width - 60, box_size[0]):
         box_body.position = x, y
         box_shape = pymunk.Poly.create_box(box_body, box_size)
         box_shape.elasticity = 0.6
-        box_shape.friction = 0.4
+        box_shape.friction = 0.5
         box_shape.color = [randrange(256) for i in range(4)]
         space.add(box_body, box_shape)
 

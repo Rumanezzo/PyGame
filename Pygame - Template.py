@@ -1,4 +1,4 @@
-# Pygame шаблон - скелет для нового проекта Pygame
+# Pygame-каркас для нового проекта Pygame
 import pygame as pg
 from sys import exit
 
