@@ -4,10 +4,11 @@ from random import randrange
 
 pymunk.pygame_util.positive_y_is_up = False
 
-res = width, height = 1366, 768
+res = width, height = 1500, 750
 fps = 60
 
 pg.init()
+pg.display.set_caption('Физический движок - демонстрация!')
 surface = pg.display.set_mode(res)
 clock = pg.time.Clock()
 draw_options = pymunk.pygame_util.DrawOptions(surface)
